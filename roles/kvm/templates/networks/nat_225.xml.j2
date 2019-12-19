@@ -1,0 +1,10 @@
+<network>
+  <name>{{ net_name }}</name>
+  <forward mode='route' dev='{{ net_source_dev }}'/>
+  <bridge name='virbr225' stp='on' delay='2'/>
+  <ip address='192.168.225.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.225.141' end='192.168.225.254'/>
+    </dhcp>
+  </ip>
+</network>

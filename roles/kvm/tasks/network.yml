@@ -1,8 +1,12 @@
+- name: kvm network | set default values
+  set_fact:
+    networks: "{{ networks | default([]) }}"
+
 - name: kvm network | generate network configuration
   template:
     dest: "{{ role_path }}/files/networks/{{ net.name }}.xml"
-    src: templates/networks/nat.xml.j2
-  loop: "{{ nat_networks }}"
+    src: templates/networks/{{ net.type }}.xml.j2
+  loop: "{{ networks }}"
   loop_control:
     loop_var: net
 
@@ -12,7 +16,7 @@
     name: "{{ net.name }}"
     xml: "{{ lookup('file', '{{ role_path }}/files/networks/{{ net.name }}.xml') }}"
   become: true
-  loop: "{{ nat_networks }}"
+  loop: "{{ networks }}"
   loop_control:
     loop_var: net
 
@@ -21,7 +25,7 @@
     command: create
     name: "{{ net.name }}"
     state: active
-  loop: "{{ nat_networks }}"
+  loop: "{{ networks }}"
   loop_control:
     loop_var: net
 
@@ -29,6 +33,6 @@
   virt_net:
     name: "{{ net.name }}"
     autostart: yes
-  loop: "{{ nat_networks }}"
+  loop: "{{ networks }}"
   loop_control:
     loop_var: net

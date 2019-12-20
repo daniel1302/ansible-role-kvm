@@ -1,6 +1,6 @@
 # ansible-kvm
 
-## Example of ussage: 
+## Example of usage: 
 
 ```
   vars:
@@ -42,3 +42,11 @@ networks:
     br_name: Virtual bridge name
     cidr: Network CIDR
     dhcp_cidr: DHCP CIDR
+
+  - name: Network Name
+    type: nat
+    source_dev: Phsical network, NAT is connected to
+    br_name: Virtual bridge name
+    cidr: Network CIDR
+    dhcp_cidr: DHCP CIDR
+```

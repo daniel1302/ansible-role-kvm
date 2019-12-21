@@ -19,6 +19,16 @@
         type: bridge
         source_dev: br0
 
+    pools:
+      - name: hostpool
+        type: dir
+        capacity: 100000000000
+        path: /kvmhostpool
+      - name: hostpool1
+        type: dir
+        path: /kvmhostpool1
+
+
     
   roles:
     - kvm

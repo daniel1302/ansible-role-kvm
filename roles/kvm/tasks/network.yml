@@ -15,7 +15,6 @@
     command: define
     name: "{{ net.name }}"
     xml: "{{ lookup('file', '{{ role_path }}/files/networks/{{ net.name }}.xml') }}"
-  become: true
   loop: "{{ networks }}"
   loop_control:
     loop_var: net

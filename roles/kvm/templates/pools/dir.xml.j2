@@ -1,0 +1,12 @@
+<pool type="dir">
+  <name>{{ pool.name }}</name>
+  <uuid>{{ pool.name | to_uuid }}</uuid>
+
+  {% if pool.capacity is defined %}
+    <capacity>{{ pool.capacity }}</capacity>
+  {% endif %}
+
+  <target>
+    <path>{{ pool.path }}</path>
+  </target>
+</pool>

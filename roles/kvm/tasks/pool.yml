@@ -1,0 +1,46 @@
+- name: kvm pool | set default values
+  set_fact:
+    networks: "{{ pools | default([]) }}"
+
+- name: kvm pool | generate configuration
+  template:
+    dest: "{{ role_path }}/files/pools/{{ pool.name }}.xml"
+    src: templates/pools/{{ pool.type }}.xml.j2
+  loop: "{{ pools }}"
+  loop_control:
+    loop_var: pool
+
+- name: kvm pool | define pool
+  virt_pool:
+    command: define
+    name: "{{ pool.name }}"
+    xml: '{{ lookup("template", "{{ role_path }}/files/pools/{{ pool.name }}.xml") }}'
+  loop: "{{ pools }}"
+  loop_control:
+    loop_var: pool
+
+- name: kvm pool | build pool
+  virt_pool:
+    command: build
+    name: "{{ pool.name }}"
+    state: active
+  loop: "{{ pools }}"
+  loop_control:
+    loop_var: pool
+
+- name: kvm pool | start pool
+  virt_pool:
+    command: start
+    name: "{{ pool.name }}"
+    state: active
+  loop: "{{ pools }}"
+  loop_control:
+    loop_var: pool
+
+- name: kvm pool | enable autostart for pool
+  virt_pool:
+    name: "{{ pool.name }}"
+    autostart: yes
+  loop: "{{ pools }}"
+  loop_control:
+    loop_var: pool

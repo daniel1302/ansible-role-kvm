@@ -1,6 +1,6 @@
 # README
 
-High level frameworks provides option to implement KVM networking
+High level frameworks provides option to implement KVM infrastructure
 
 ## Example of usage: 
 
@@ -22,15 +22,37 @@ High level frameworks provides option to implement KVM networking
         type: bridge
         source_dev: br0
 
+    pools:
+      - name: hostpool
+        type: dir
+        capacity: 100000000000
+        path: /mapper/red01/kvmhostpool
+
+      - name: hostpool1
+        type: dir
+        path: /mapper/red01/kvmhostpool
+
 
   roles:
     - kvm
 ```
 
+### Pools
+
+- [Pools](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-managing_guest_virtual_machines_with_virsh-storage_pool_commands)
+
+```
+pools:
+  - name: Name of the dir pool
+    type: dir
+    capacity: Pool capacity in bytes
+    path: Pool path
+
+```
 
 ### Networks
 
-Network lists: 
+Articles: 
 
 - [Routed network](https://fabianlee.org/2019/06/05/kvm-creating-a-guest-vm-on-a-network-in-routed-mode/)
 - [NAT network](https://fabianlee.org/2019/05/26/kvm-creating-a-guest-vm-on-a-nat-network/)

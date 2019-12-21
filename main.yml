@@ -15,7 +15,10 @@
         br_name: nat222
         cidr: 192.168.222.0/24
         dhcp_cidr: 192.168.222.128/25
+      - name: hostbr211
+        type: bridge
+        source_dev: br0
 
-
+    
   roles:
     - kvm

@@ -2,9 +2,14 @@
   <name>{{ net.name }}</name>
   <forward mode='route' dev='{{ net.source_dev }}'/>
   <bridge name='{{ net.br_name }}' stp='on' delay='2'/>
+
   <ip address='{{ net.cidr | ipaddr('next_usable') }}' netmask='{{ net.cidr | ipaddr('netmask') }}'>
+
+  {% if net.dhcp_cidr is defined %}
     <dhcp>
       <range start='{{ net.dhcp_cidr | ipaddr('1') | ipaddr('address') }}' end='{{ net.dhcp_cidr | ipaddr('-2') | ipaddr('address') }}' />
     </dhcp>
+  {% endif %}
+  
   </ip>
 </network>

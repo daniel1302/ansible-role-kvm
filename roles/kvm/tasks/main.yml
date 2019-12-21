@@ -1,2 +1,5 @@
-- name: 
+- name: kvm network
   import_tasks: network.yml
+
+- name: kvm pool
+  import_tasks: pool.yml

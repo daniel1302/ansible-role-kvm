@@ -1,6 +1,6 @@
 <network>
   <name>{{ net.name }}</name>
-  <forward mode='nat'/>
+  <forward mode='route' dev='{{ net.source_dev }}'/>
   <bridge name='{{ net.br_name }}' stp='on' delay='2'/>
   <ip address='{{ net.cidr | ipaddr('next_usable') }}' netmask='{{ net.cidr | ipaddr('netmask') }}'>
     <dhcp>

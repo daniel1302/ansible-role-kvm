@@ -1,4 +1,6 @@
-# ansible-kvm
+# README
+
+High level frameworks provides option to implement KVM networking
 
 ## Example of usage: 
 
@@ -32,7 +34,12 @@
 
 ### Networks
 
-Currently only NAT network is supported.
+Network lists: 
+
+- [Routed network](https://fabianlee.org/2019/06/05/kvm-creating-a-guest-vm-on-a-network-in-routed-mode/)
+- [NAT network](https://fabianlee.org/2019/05/26/kvm-creating-a-guest-vm-on-a-nat-network/)
+
+
 
 ```
 networks:
@@ -44,7 +51,7 @@ networks:
     dhcp_cidr: DHCP CIDR
 
   - name: Network Name
-    type: nat
+    type: routed
     source_dev: Phsical network, NAT is connected to
     br_name: Virtual bridge name
     cidr: Network CIDR

@@ -4,24 +4,17 @@
 
   vars:
     networks:
-      - name: routed225
-        type: nat
+      - name: routed229
+        type: routed
         source_dev: br0
-        br_name: vibr225
-        cidr: 192.168.225.0/24
-        dhcp_cidr: 192.168.225.128/25
-      - name: routed226
+        br_name: virbr229
+        cidr: 192.168.229.0/24
+        dhcp_cidr: 192.168.229.128/25
+      - name: nat222
         type: nat
-        source_dev: br0
-        br_name: vibr226
-        cidr: 192.168.226.0/24
-        dhcp_cidr: 192.168.226.128/25
-      - name: routed227
-        type: nat
-        source_dev: br0
-        br_name: vibr227
-        cidr: 192.168.227.0/24
-        dhcp_cidr: 192.168.227.128/25
+        br_name: nat222
+        cidr: 192.168.222.0/24
+        dhcp_cidr: 192.168.222.128/25
 
 
   roles:

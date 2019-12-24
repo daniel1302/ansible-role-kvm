@@ -31,7 +31,26 @@ High level frameworks provides option to implement KVM infrastructure
       - name: hostpool1
         type: dir
         path: /mapper/red01/kvmhostpool
-
+    
+    vms:
+      - name: jenkins
+        vcpus: 1
+        ram: 1024
+        serial: true
+        userdata: path_to_usedata.sh
+        disks: 
+          - base: path_to_base_disk.iso
+            pool: some-pool
+            size: 25
+        cdroms:
+          - path_to_iso.iso
+        networks:
+          - name: network_1
+            ip: 255.200.100.0
+            mac: 52:54:00:00:00:01
+          - name: network_2
+          - name: network_3
+            mac: 52:54:00:00:00:02
 
   roles:
     - kvm
